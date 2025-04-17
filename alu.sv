@@ -14,7 +14,7 @@ module alu(
     
     assign c = ~ALUControl[1] & cout;
 
-    assign {cout, sum} = a + (ALUControl[0] ? ~b : b) + ALUControl[0];
+    assign {cout, sum} = a + {1'b0, ALUControl[0] ? ~b : b} + ALUControl[0];
 
     always_comb begin
         case (ALUControl)
