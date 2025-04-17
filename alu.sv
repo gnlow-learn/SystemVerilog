@@ -26,7 +26,7 @@ module alu(
 
     assign n = Result[31];
 
-    assign z = ~&Result;
+    assign z = &(~Result);
 
     assign ALUFlags = {n, z, c, v};
 
