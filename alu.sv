@@ -8,13 +8,13 @@ module alu(
     logic cout, n, z, c, v;
 
     assign v =
-        ~(ALUControl ^ a[31] ^ b[31])
+        ~(ALUControl[0] ^ a[31] ^ b[31])
         & (a[31] ^ sum[31])
-        & ~ALUControl;
+        & ~ALUControl[1];
     
-    assign c = ~ALUControl & cout;
+    assign c = ~ALUControl[1] & cout;
 
-    assign {cout, sum} = a + (ALUControl[0] ? ~b : b);
+    assign {cout, sum} = a + (ALUControl[0] ? ~b : b) + ALUControl[0];
 
     always_comb begin
         case (ALUControl)
